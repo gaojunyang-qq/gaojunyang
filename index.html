@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="星轨闪避是一款纯 HTML、CSS、JavaScript 制作的轻量网页小游戏。"
+    />
+    <meta name="theme-color" content="#15151a" />
+    <title>星轨闪避</title>
+    <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar" aria-label="游戏状态">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">✦</span>
+          <div>
+            <h1>星轨闪避</h1>
+            <p>Starway Sprint</p>
+          </div>
+        </div>
+
+        <div class="scoreboard" aria-live="polite">
+          <div class="score-tile">
+            <span>分数</span>
+            <strong id="scoreValue">0</strong>
+          </div>
+          <div class="score-tile accent">
+            <span>最高</span>
+            <strong id="bestValue">0</strong>
+          </div>
+        </div>
+      </header>
+
+      <section class="game-frame" aria-label="星轨闪避游戏区域">
+        <canvas id="gameCanvas" width="960" height="640" aria-label="星轨闪避游戏画面"></canvas>
+
+        <div class="hud" aria-hidden="true">
+          <div id="comboBadge" class="combo-badge">+20</div>
+        </div>
+
+        <section id="startScreen" class="screen">
+          <div class="screen-panel">
+            <span class="screen-kicker">READY</span>
+            <h2>穿过星轨</h2>
+            <p>躲开陨石，收集星辉。</p>
+            <button id="startButton" class="primary-button" type="button">开始游戏</button>
+          </div>
+        </section>
+
+        <section id="gameOverScreen" class="screen" hidden>
+          <div class="screen-panel">
+            <span class="screen-kicker danger">CRASH</span>
+            <h2>航线中断</h2>
+            <p>
+              本局得分 <strong id="finalScore">0</strong>
+              <span class="divider-dot" aria-hidden="true"></span>
+              最高分 <strong id="finalBest">0</strong>
+            </p>
+            <button id="restartButton" class="primary-button" type="button">再来一局</button>
+          </div>
+        </section>
+
+        <div class="touch-controls" aria-label="触屏控制">
+          <button id="leftControl" class="control-button" type="button" aria-label="向左移动">←</button>
+          <button id="rightControl" class="control-button" type="button" aria-label="向右移动">→</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

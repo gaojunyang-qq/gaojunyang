@@ -1,0 +1,19 @@
+{
+  "name": "starway-sprint",
+  "version": "1.0.0",
+  "private": true,
+  "description": "一个纯 HTML、CSS、JavaScript 制作的响应式网页小游戏。",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node tests/smoke-test.mjs",
+    "test:browser": "node tests/browser-smoke.mjs"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "javascript",
+    "game",
+    "canvas"
+  ],
+  "license": "MIT"
+}

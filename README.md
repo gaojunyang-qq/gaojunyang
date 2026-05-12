@@ -1,59 +1,156 @@
-# Introduction to GitHub
+# 星轨闪避 Starway Sprint
 
-<!-- ![](https://github.com/gaojunyang-qq/gaojunyang/actions/workflows/0-start-exercise.yml/badge.svg) -->
-![](https://github.com/gaojunyang-qq/gaojunyang/actions/workflows/1-create-a-branch.yml/badge.svg)
-![](https://github.com/gaojunyang-qq/gaojunyang/actions/workflows/2-commit-a-file.yml/badge.svg)
-![](https://github.com/gaojunyang-qq/gaojunyang/actions/workflows/3-open-a-pull-request.yml/badge.svg)
-![](https://github.com/gaojunyang-qq/gaojunyang/actions/workflows/4-merge-your-pull-request.yml/badge.svg)
+一个从零创建的纯前端网页小游戏，使用 HTML、CSS 和 JavaScript Canvas 实现。项目不需要后端和构建步骤，可以直接部署到 Vercel、Netlify、GitHub Pages。
 
-_Get started using GitHub in less than an hour._
+## 功能
 
-## Welcome
+- 开始界面、游戏主界面、失败重开
+- 当前分数与本地最高分
+- 键盘、鼠标、手机触屏操作
+- 响应式布局，适配手机和电脑浏览器
+- 无第三方运行依赖，静态托管即可上线
 
-People use GitHub to build some of the most advanced technologies in the world. Whether you’re visualizing data or building a new game, there’s a whole community and set of tools on GitHub that can help you do it even better. GitHub Skills’ “Introduction to GitHub” exercise guides you through everything you need to start contributing in less than an hour.
+## 本地运行
 
-- **Who is this for**: New developers, new GitHub users, and students.
-- **What you'll learn**: We'll introduce repositories, branches, commits, and pull requests.
-- **What you'll build**: We'll make a short Markdown file you can use as your [profile README](https://docs.github.com/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme).
-- **Prerequisites**: None. This exercise is a great introduction for your first day on GitHub.
-- **How long**: This exercise takes less than one hour to complete.
+方式一：使用项目自带的零依赖静态服务器
 
-In this exercise, you will:
+```bash
+node server.mjs
+```
 
-1. Create a branch
-2. Commit a file
-3. Open a pull request
-4. Merge your pull request
+打开：
 
-### How to start this exercise
+```text
+http://localhost:4173
+```
 
-1. Right-click **Copy Exercise** and open the link in a new tab.
+如果本机安装了 npm，也可以使用：
 
-   <a id="copy-exercise">
-      <img src="https://img.shields.io/badge/📠_Copy_Exercise-AAA" height="25pt"/>
-   </a>
+```bash
+npm start
+```
 
-2. In the new tab, most of the prompts will automatically fill in for you.
-   - For owner, choose your personal account or an organization to host the repository.
-   - We recommend creating a public repository, as private repositories will [use Actions minutes](https://docs.github.chttps://github.com/gaojunyang-qq/gaojunyang/billing/managing-billing-for-github-actions/about-billing-for-github-actions).
-   - Scroll down and click the **Create repository** button at the bottom of the form.
+方式二：使用 Python 静态服务器
 
-3. After your new repository is created, wait about 20 seconds for the exercise to be prepared and buttons updated. You will continue working from your copy of the exercise.
-   - The **Copy Exercise** button will deactivate, changing to gray.
-   - The **Start Exercise** button will activate, changing to green.
-   - You will likely need to refresh the page.
+```bash
+python -m http.server 4173
+```
 
-4. Click **Start Exercise**. Follow the step-by-step instructions and feedback will be provided as you progress.
+方式三：直接打开 `index.html`
 
-   <a id="start-exercise" href="https://github.com/gaojunyang-qq/gaojunyang/issues/1">
-      <img src="https://img.shields.io/badge/🚀_Start_Exercise-008000" height="25pt"/>
-   </a>
+大多数现代浏览器可以直接打开本项目的 `index.html`。为了更接近线上环境，推荐使用静态服务器方式。
 
-> [!IMPORTANT]
-> The **Start Exercise** button will activate after copying the repository. You will probably need to refresh the page.
+## 操作
 
----
+- 键盘：`←` / `→` 或 `A` / `D` 移动，`Space` / `Enter` 开始或重开
+- 鼠标：在游戏区域移动或拖动飞船
+- 手机：拖动游戏区域，或按住右下角方向按钮
 
-Get help: [Post in our discussion board](https://github.com/orgs/skills/discussions/categories/introduction-to-github) &bull; [Review the GitHub status page](https://www.githubstatus.com/)
+## 测试
 
-&copy; 2024 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
+项目包含一个轻量静态冒烟测试：
+
+```bash
+npm test
+```
+
+没有 npm 时可以直接运行：
+
+```bash
+node tests/smoke-test.mjs
+```
+
+该测试会检查核心文件、页面结构、移动端样式、最高分保存和输入事件是否存在。
+
+本机安装 Chrome 或 Edge 时，还可以运行浏览器冒烟测试：
+
+```bash
+npm run test:browser
+```
+
+没有 npm 时可以直接运行：
+
+```bash
+node tests/browser-smoke.mjs
+```
+
+该测试会启动本地页面，模拟桌面键盘/鼠标和移动端触屏操作，并生成截图到 `.tmp/screenshots/`。
+
+## 上传到 GitHub
+
+先确保本机已经安装 Git，并且可以在终端运行 `git --version`。
+
+在项目根目录执行：
+
+```bash
+git init
+git add .
+git commit -m "Create starway sprint game"
+git branch -M main
+git remote add origin https://github.com/<你的用户名>/<你的仓库名>.git
+git push -u origin main
+```
+
+如果仓库已经存在并且已经配置了远程地址，可以跳过 `git init` 和 `git remote add origin ...`。
+
+## 部署到 Vercel
+
+1. 登录 [Vercel](https://vercel.com/)。
+2. 点击 `Add New...`，选择 `Project`。
+3. 导入 GitHub 仓库。
+4. Framework Preset 选择 `Other`。
+5. Build Command 留空。
+6. Output Directory 留空或填写 `.`。
+7. 点击 `Deploy`。
+
+也可以使用 Vercel CLI：
+
+```bash
+npm i -g vercel
+vercel
+vercel --prod
+```
+
+## 部署到 Netlify
+
+1. 登录 [Netlify](https://www.netlify.com/)。
+2. 点击 `Add new site`，选择 `Import an existing project`。
+3. 连接 GitHub 仓库。
+4. Build command 留空。
+5. Publish directory 填写 `.`。
+6. 点击 `Deploy site`。
+
+也可以直接把整个项目文件夹拖到 Netlify 的手动部署区域。
+
+## 部署到 GitHub Pages
+
+1. 将项目推送到 GitHub。
+2. 打开仓库页面，进入 `Settings`。
+3. 进入 `Pages`。
+4. Source 选择 `Deploy from a branch`。
+5. Branch 选择 `main`，目录选择 `/root`。
+6. 保存后等待 GitHub Pages 自动发布。
+
+发布地址通常是：
+
+```text
+https://<你的用户名>.github.io/<你的仓库名>/
+```
+
+## 项目结构
+
+```text
+.
+├── assets/
+│   └── icon.svg
+├── tests/
+│   ├── browser-smoke.mjs
+│   └── smoke-test.mjs
+├── index.html
+├── styles.css
+├── script.js
+├── server.mjs
+├── package.json
+├── .gitignore
+└── README.md
+```
